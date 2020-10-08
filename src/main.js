@@ -51,24 +51,46 @@ Vue.config.productionTip = false
 //     return h(Demo)
 //   }
 // })
-import Demo from './Demo.vue'
+
+// // destroyed 示例
+// import Demo from './Demo.vue'
+// new Vue({
+//   components:{Demo},
+//   data(){
+//     return{
+//       visible: true
+//     }
+//   },
+//   template:`
+//     <div>
+//       <button @click="toggle">toggle</button>
+//       <hr>
+//       <Demo v-if="visible === true"/>
+//     </div>
+//   `,
+//   methods:{
+//     toggle(){
+//       this.visible = !this.visible
+//     }
+//   }
+// }).$mount('#app')
+
+// props 外部数据
+import Demo2 from './Demo2.vue'
+
 new Vue({
-  components:{Demo},
-  data(){
-    return{
-      visible: true
-    }
-  },
+  components:{Demo2},
+  el: '#app',
+  data:{n:0},
   template:`
     <div>
-      <button @click="toggle">toggle</button>
-      <hr>
-      <Demo v-if="visible === true"/>
+      {{n}}
+      <Demo2 :message="n" :fn="add"/>
     </div>
   `,
   methods:{
-    toggle(){
-      this.visible = !this.visible
+    add(){
+      this.n += 1
     }
   }
-}).$mount('#app')
+})
